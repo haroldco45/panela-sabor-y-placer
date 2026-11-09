@@ -1,4 +1,4 @@
-const C="sabor-y-placer-v1";
+const C="sabor-y-placer-v2";
 const A=["./","index.html","manifest.json","frente.jpg","reverso.jpg","textura.jpg","arriero.jpg","icon-192.png","icon-512.png"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(A)));self.skipWaiting();});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))));self.clients.claim();});

@@ -139,6 +139,25 @@ input:focus,textarea:focus{outline:none;border-color:var(--miel)}
 .priv{font-size:12px;color:#7a5232;margin-top:12px;line-height:1.4}
 .pedido .cta{width:100%;justify-content:center}
 
+.fam{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:760px){.fam{grid-template-columns:repeat(3,1fr)}}
+.pres{position:relative;border-radius:16px;overflow:hidden;min-height:170px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;cursor:pointer;box-shadow:0 10px 26px #4a1f0533;transition:transform .3s}
+.pres:hover{transform:translateY(-5px) rotate(-.5deg)}
+.pres img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 4s}
+.pres:hover img{transform:scale(1.15)}
+.pres::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 20%,#2b1404e6)}
+.pres *:not(img){position:relative;z-index:2}
+.pres b{font:800 24px "Barlow Condensed";text-transform:uppercase;line-height:1}
+.pres small{color:var(--oro);font-weight:700}
+.pres .add{margin-top:8px;align-self:flex-start;background:var(--rojo);border-radius:20px;padding:5px 12px;font:800 12px Barlow;text-transform:uppercase;letter-spacing:1px}
+.pres.star,.pres:last-child{grid-column:span 2}
+@media(min-width:760px){.pres.star,.pres:last-child{grid-column:span 1}}
+.flash{animation:flash .8s}
+@keyframes flash{0%{background:#ffc94a}100%{background:transparent}}
+.lines .row{border-bottom:1px dashed #e6cfa3;padding-bottom:10px}
+.lines .qty button{width:38px;height:38px;font-size:20px}
+.lines .qty output{min-width:36px;font-size:26px}
+.note{font-size:13px;color:#7a5232;margin-top:18px}
 footer{background:var(--cafe);color:#f3d9a6;text-align:center;padding:36px 20px 110px;font-size:14px;line-height:1.7}
 footer b{color:var(--oro)}
 
@@ -229,15 +248,21 @@ footer b{color:var(--oro)}
   </div>
 </section>
 
+<section style="background:#fff">
+  <div class="wrap">
+    <h2 class="sec-t rv" data-i18n="fam_t">La familia Sabor y Placer</h2>
+    <p class="sec-s rv" data-i18n="fam_s">Además de la pulverizada, la marca tiene panela en pastilla, redonda, cuadrada y porcionada. Toca una para agregarla a tu pedido.</p>
+    <div class="fam" id="fam"></div>
+    <p class="note rv" data-i18n="fam_n">Presentaciones de la marca que se encuentran en supermercados de Antioquia. Confirma disponibilidad al hacer tu pedido.</p>
+  </div>
+</section>
+
 <section class="pedido" id="pedido">
   <div class="wrap">
     <h2 class="sec-t rv" style="text-align:center" data-i18n="ped_t">Haz tu pedido</h2>
     <p class="sec-s rv" style="margin:0 auto 26px;text-align:center" data-i18n="ped_s">Elige cuántas bolsas quieres y te llega el mensaje listo por WhatsApp.</p>
     <div class="box rv">
-      <div class="row">
-        <div><b data-i18n="prod">Panela pulverizada 460 g</b><br><small id="precioTxt"></small></div>
-        <div class="qty"><button id="menos" aria-label="menos">−</button><output id="q">1</output><button id="mas" aria-label="más">+</button></div>
-      </div>
+      <div class="lines" id="lines"></div>
       <div class="row"><span data-i18n="tot">Total</span><span class="total" id="total"></span></div>
       <label for="nom" data-i18n="nom">Tu nombre</label>
       <input id="nom" autocomplete="name">
@@ -291,8 +316,9 @@ const T = {
   env:"Enviar pedido por WhatsApp",priv:"Tus datos solo se usan para enviar este pedido por WhatsApp. No se guardan en ningún servidor (Ley 1581 de 2012, Habeas Data).",
   f1:"Producida y empacada por Martha Chaverra G. · Finca El Placer · Yalí, Antioquia",f2:"Consérvese en un lugar fresco y seco.",
   f3:"Desarrollada por Vibras Positivas HM — Derechos de Autor Reservados",fab:"Pedir por WhatsApp",inst:"Instalar app",
-  convenir:"Precio a convenir",cu:"c/u",bolsas:"bolsa(s)",
-  msg:(q,n,d,no,t)=>`Hola, quiero pedir Panela Sabor y Placer:\n- ${q} bolsa(s) de 460 g${t?`\n- Total: ${t}`:""}\n\nNombre: ${n||"-"}\nEntrega: ${d||"-"}${no?`\nNota: ${no}`:""}`,
+  convenir:"Precio a convenir",cu:"c/u",und:"producto(s)",agregar:"Agregar",
+  fam_t:"La familia Sabor y Placer",fam_s:"Además de la pulverizada, la marca tiene panela en pastilla, redonda, cuadrada y porcionada. Toca una para agregarla a tu pedido.",fam_n:"Presentaciones de la marca que se encuentran en supermercados de Antioquia. Confirma disponibilidad al hacer tu pedido.",
+  msg:(q,n,d,no,t)=>`Hola, quiero pedir Panela Sabor y Placer:\n${q}${t?`\n- Total: ${t}`:""}\n\nNombre: ${n||"-"}\nEntrega: ${d||"-"}${no?`\nNota: ${no}`:""}`,
   fabmsg:"Hola, quiero información de la Panela Sabor y Placer."},
  en:{splash_k:"POWDERED PANELA",splash_s:"Yalí · Northeast Antioquia, Colombia",kicker:"100% natural",h1a:"Panela",
   lead:"Powdered unrefined cane sugar from Finca El Placer, in the mountains of Yalí. Ready to dissolve in aguapanela, lemonade or hot chocolate.",
@@ -315,12 +341,22 @@ const T = {
   env:"Send order via WhatsApp",priv:"Your data is only used to send this order via WhatsApp. It is not stored on any server (Colombian Law 1581 of 2012, Habeas Data).",
   f1:"Produced and packed by Martha Chaverra G. · Finca El Placer · Yalí, Antioquia",f2:"Store in a cool, dry place.",
   f3:"Developed by Vibras Positivas HM — All Rights Reserved",fab:"Order on WhatsApp",inst:"Install app",
-  convenir:"Price on request",cu:"each",bolsas:"bag(s)",
-  msg:(q,n,d,no,t)=>`Hello, I'd like to order Panela Sabor y Placer:\n- ${q} bag(s) of 460 g${t?`\n- Total: ${t}`:""}\n\nName: ${n||"-"}\nDelivery: ${d||"-"}${no?`\nNote: ${no}`:""}`,
+  convenir:"Price on request",cu:"each",und:"item(s)",agregar:"Add",
+  fam_t:"The Sabor y Placer family",fam_s:"Besides the powdered panela, the brand makes tablet, round, square and portioned panela. Tap one to add it to your order.",fam_n:"Brand presentations found in supermarkets across Antioquia. Confirm availability when you order.",
+  msg:(q,n,d,no,t)=>`Hello, I'd like to order Panela Sabor y Placer:\n${q}${t?`\n- Total: ${t}`:""}\n\nName: ${n||"-"}\nDelivery: ${d||"-"}${no?`\nNote: ${no}`:""}`,
   fabmsg:"Hello, I'd like information about Panela Sabor y Placer."}
 };
+/* Presentaciones de la marca. precio 0 = a convenir (la pulverizada usa CONFIG.precio) */
+const PRODUCTOS = [
+  {id:"pulv", es:"Pulverizada", en:"Powdered", peso:"460 g", precio:0, f:"", star:true},
+  {id:"past", es:"En pastilla", en:"Tablet", peso:"480 g", precio:0, f:"sepia(.5) brightness(.85) saturate(1.4)"},
+  {id:"red8", es:"Redonda x 8", en:"Round x 8", peso:"900 g", precio:0, f:"brightness(.7) saturate(1.6)"},
+  {id:"cua8", es:"Cuadrada x 8", en:"Square x 8", peso:"900 g", precio:0, f:"hue-rotate(-12deg) brightness(.8)"},
+  {id:"por18", es:"Porcionada x 18", en:"Portions x 18", peso:"900 g", precio:0, f:"sepia(.3) brightness(.95) saturate(1.8)"},
+  {id:"taz2", es:"Tacita x 2", en:"Mini-cup x 2", peso:"650 g", precio:0, f:"contrast(1.3) brightness(.75)"}
+];
 let L = localStorage.getItem("ssp_lang") || "es";
-let q = 1;
+const Q = {pulv:1};
 const $ = s=>document.querySelector(s);
 const cop = n=>"$"+n.toLocaleString("es-CO");
 
@@ -332,20 +368,36 @@ function render(){
   document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===L));
   const tk=t.tk.map(x=>`<span>${x}</span><span>·</span>`).join(""); $("#tk").innerHTML=tk+tk;
   $("#fab").href=`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(t.fabmsg)}`;
-  totals();
+  renderFam(); totals();
+}
+const precioDe = p => p.id==="pulv" && !p.precio ? CONFIG.precio : p.precio;
+function nombre(p){ return `${p[L]} (${p.peso})`; }
+function renderFam(){
+  const t=T[L];
+  $("#fam").innerHTML=PRODUCTOS.map(p=>`<div class="pres${p.star?" star":""}" data-id="${p.id}">
+    <img src="textura.jpg" alt="" style="filter:${p.f}"><small>${p.peso}</small><b>${p[L]}</b><span class="add">${t.agregar}</span></div>`).join("");
+  document.querySelectorAll(".pres").forEach(c=>c.onclick=()=>{const id=c.dataset.id;Q[id]=(Q[id]||0)+1;totals();
+    const r=document.querySelector(`.lines [data-id="${id}"]`); if(r){r.classList.remove("flash");void r.offsetWidth;r.classList.add("flash");}
+    document.getElementById("pedido").scrollIntoView({behavior:"smooth"});});
 }
 function totals(){
-  const t=T[L]; $("#q").textContent=q;
-  if(CONFIG.precio>0){ $("#precioTxt").textContent=`${cop(CONFIG.precio)} ${t.cu}`; $("#total").textContent=cop(CONFIG.precio*q); }
-  else { $("#precioTxt").textContent=t.convenir; $("#total").textContent=`${q} ${t.bolsas}`; }
+  const t=T[L];
+  if(!Object.values(Q).some(v=>v>0)) Q.pulv=1;
+  $("#lines").innerHTML=PRODUCTOS.filter(p=>Q[p.id]>0).map(p=>{const pr=precioDe(p);
+    return `<div class="row" data-id="${p.id}"><div><b>${nombre(p)}</b><br><small>${pr>0?cop(pr)+" "+t.cu:t.convenir}</small></div>
+    <div class="qty"><button data-m="${p.id}" aria-label="menos">−</button><output>${Q[p.id]}</output><button data-p="${p.id}" aria-label="más">+</button></div></div>`}).join("");
+  $("#lines").querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{Q[b.dataset.m]--;totals();});
+  $("#lines").querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>{Q[b.dataset.p]=Math.min(99,Q[b.dataset.p]+1);totals();});
+  const sel=PRODUCTOS.filter(p=>Q[p.id]>0), und=sel.reduce((a,p)=>a+Q[p.id],0);
+  $("#total").textContent = sel.every(p=>precioDe(p)>0) ? cop(sel.reduce((a,p)=>a+precioDe(p)*Q[p.id],0)) : `${und} ${t.und}`;
 }
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{L=b.dataset.l;try{localStorage.setItem("ssp_lang",L)}catch(e){};render();});
-$("#mas").onclick=()=>{q=Math.min(99,q+1);totals();};
-$("#menos").onclick=()=>{q=Math.max(1,q-1);totals();};
 document.querySelectorAll(".uso").forEach(u=>u.onclick=()=>{u.classList.toggle("open");render();});
 $("#enviar").onclick=()=>{
-  const t=T[L], tot=CONFIG.precio>0?cop(CONFIG.precio*q):"";
-  const m=t.msg(q,$("#nom").value.trim(),$("#dir").value.trim(),$("#nota").value.trim(),tot);
+  const t=T[L], sel=PRODUCTOS.filter(p=>Q[p.id]>0);
+  const items=sel.map(p=>`- ${Q[p.id]} x ${nombre(p)}`).join("\n");
+  const tot=sel.every(p=>precioDe(p)>0)?cop(sel.reduce((a,p)=>a+precioDe(p)*Q[p.id],0)):"";
+  const m=t.msg(items,$("#nom").value.trim(),$("#dir").value.trim(),$("#nota").value.trim(),tot);
   window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(m)}`,"_blank");
 };
 

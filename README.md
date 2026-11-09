@@ -7,7 +7,9 @@ App (PWA) de Vibras Positivas HM para **Panela Pulverizada Sabor y Placer**, 100
 - Historia de los arrieros y la caña (texto del empaque)
 - 3 preparaciones: aguapanela, limonada de panela y chocolate
 - Ficha del producto con contadores animados
-- Pedido por WhatsApp con cantidad, nombre y dirección (mensaje listo)
+- Familia Sabor y Placer: pulverizada, pastilla, redonda, cuadrada, porcionada y tacita; se agregan al pedido con un toque
+- Pedido por WhatsApp (311 668 6640) con varias presentaciones, nombre y dirección
+- `flyer.jpg`: flyer con QR a la app
 - Español / Inglés
 - Instalable (manifest + service worker), funciona sin internet
 - Vista previa del enlace con foto real (`og.jpg`, 1200×630)
