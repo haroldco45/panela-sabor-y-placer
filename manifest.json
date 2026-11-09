@@ -1,0 +1,15 @@
+{
+  "name": "Panela Sabor y Placer",
+  "short_name": "Sabor y Placer",
+  "description": "Panela pulverizada 100% natural de Yalí, Antioquia. Pedidos por WhatsApp.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#4a1f05",
+  "theme_color": "#7a3a0c",
+  "lang": "es-CO",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+  ]
+}

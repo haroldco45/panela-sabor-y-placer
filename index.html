@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Panela Sabor y Placer · 100% natural de Yalí, Antioquia</title>
+<meta name="description" content="Panela pulverizada Sabor y Placer, 100% natural, de la Finca El Placer en Yalí, Nordeste Antioqueño. Bolsa de 460 g. Pídela por WhatsApp.">
+<meta name="theme-color" content="#7a3a0c">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<!-- Vista previa del enlace (OG / Twitter) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Panela Sabor y Placer · 100% natural">
+<meta property="og:description" content="Panela pulverizada de la Finca El Placer, Yalí (Nordeste Antioqueño). Bolsa de 460 g. Pídela por WhatsApp.">
+<meta property="og:image" content="https://panela-sabor-y-placer.netlify.app/og.jpg">
+<meta property="og:url" content="https://panela-sabor-y-placer.netlify.app/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Panela Sabor y Placer · 100% natural">
+<meta name="twitter:description" content="Panela pulverizada de la Finca El Placer, Yalí (Nordeste Antioqueño). Pídela por WhatsApp.">
+<meta name="twitter:image" content="https://panela-sabor-y-placer.netlify.app/og.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cafe:#4a1f05; --cafe2:#7a3a0c; --miel:#e89a1c; --oro:#ffc94a; --crema:#fff6e3;
+  --rojo:#c8281a; --verde:#3f7d2a; --tx:#2b1404;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Barlow,system-ui,sans-serif;background:var(--crema);color:var(--tx);overflow-x:hidden}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:"Barlow Condensed",Barlow,sans-serif;line-height:1;text-transform:uppercase;letter-spacing:.5px}
+
+/* Splash */
+#splash{position:fixed;inset:0;z-index:99;background:var(--cafe);color:var(--oro);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:opacity .6s,visibility .6s}
+#splash.off{opacity:0;visibility:hidden}
+#splash h2{font-size:44px;color:#fff}
+#splash small{color:#f3d9a6;font-size:13px;letter-spacing:1px}
+#splash .bar{width:160px;height:4px;background:#ffffff22;border-radius:4px;overflow:hidden;margin-top:12px}
+#splash .bar i{display:block;height:100%;width:40%;background:var(--oro);animation:load 1.1s ease-in-out infinite}
+@keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+
+/* Top bar */
+header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;transition:background .3s,box-shadow .3s}
+header.solid{background:rgba(74,31,5,.94);box-shadow:0 4px 20px #0004;backdrop-filter:blur(6px)}
+header b{font-family:"Barlow Condensed";color:#fff;font-size:20px;text-transform:uppercase}
+header b span{color:var(--oro)}
+.lang{display:flex;border:2px solid var(--oro);border-radius:30px;overflow:hidden}
+.lang button{background:none;border:0;color:#fff;font:700 13px Barlow;padding:6px 12px;cursor:pointer}
+.lang button.on{background:var(--oro);color:var(--cafe)}
+
+/* Hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;color:#fff}
+.hero .bg{position:absolute;inset:-30px;background:url(textura.jpg) center/cover;filter:saturate(1.2);animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{from{transform:scale(1.05) translate(0,0)}to{transform:scale(1.18) translate(-20px,-30px)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#4a1f0566 0%,#4a1f05cc 55%,#2b1404 100%)}
+.hero .in{position:relative;z-index:2;width:100%;max-width:1100px;margin:0 auto;padding:110px 22px 50px;display:grid;gap:28px;align-items:end}
+@media(min-width:820px){.hero .in{grid-template-columns:1.2fr .8fr}}
+.kicker{display:inline-block;background:var(--rojo);color:#fff;font-weight:800;font-size:13px;letter-spacing:2px;padding:6px 12px;border-radius:4px;text-transform:uppercase}
+.hero h1{font-size:clamp(54px,13vw,108px);margin:14px 0 6px;text-shadow:0 6px 30px #0007}
+.hero h1 em{font-style:normal;color:var(--oro);display:block}
+.hero p.lead{font-size:19px;max-width:520px;color:#ffeccc}
+.bag{justify-self:center;width:min(78vw,330px);border-radius:18px;box-shadow:0 30px 60px #000a;transform:rotate(-4deg);animation:float 5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(-2deg) translateY(-14px)}}
+.cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:var(--rojo);color:#fff;text-decoration:none;font:800 18px Barlow;padding:15px 26px;border-radius:50px;box-shadow:0 10px 30px #c8281a66;border:0;cursor:pointer;position:relative;overflow:hidden}
+.cta::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,#ffffff55,transparent);animation:shine 2.8s infinite}
+@keyframes shine{to{left:130%}}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pills span{border:1px solid #ffffff55;background:#ffffff14;padding:6px 12px;border-radius:30px;font-size:14px}
+
+/* Ticker */
+.ticker{background:var(--oro);color:var(--cafe);overflow:hidden;white-space:nowrap;font:800 18px "Barlow Condensed";text-transform:uppercase;padding:12px 0}
+.ticker div{display:inline-block;animation:tick 26s linear infinite}
+.ticker span{margin:0 26px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+section{padding:70px 22px}
+.wrap{max-width:1100px;margin:0 auto}
+.sec-t{font-size:clamp(36px,8vw,58px);color:var(--cafe2);margin-bottom:10px}
+.sec-s{color:#7a5232;font-size:17px;max-width:620px;margin-bottom:30px}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
+.rv.vis{opacity:1;transform:none}
+
+/* Historia */
+.historia{background:var(--cafe);color:#ffeccc;position:relative;overflow:hidden}
+.historia .grid{display:grid;gap:30px;align-items:center}
+@media(min-width:820px){.historia .grid{grid-template-columns:1fr 1fr}}
+.historia .sec-t{color:var(--oro)}
+.historia blockquote{font-size:20px;line-height:1.55;border-left:4px solid var(--oro);padding-left:18px}
+.historia .ph{border-radius:16px;overflow:hidden;box-shadow:0 20px 50px #0008;position:relative}
+.historia .ph img{width:100%;height:280px;object-fit:cover;transition:transform 6s}
+.historia .ph:hover img{transform:scale(1.1)}
+.historia .ph figcaption{position:absolute;bottom:0;left:0;right:0;padding:14px;background:linear-gradient(transparent,#000c);color:#fff;font-size:14px}
+
+/* Usos */
+.usos{display:grid;gap:18px}
+@media(min-width:760px){.usos{grid-template-columns:repeat(3,1fr)}}
+.uso{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px #7a3a0c1f;transition:transform .3s,box-shadow .3s;cursor:pointer}
+.uso:hover{transform:translateY(-6px);box-shadow:0 20px 40px #7a3a0c33}
+.uso .top{height:150px;position:relative;overflow:hidden}
+.uso .top img{width:100%;height:100%;object-fit:cover}
+.uso .top b{position:absolute;bottom:12px;left:14px;color:#fff;font:800 30px "Barlow Condensed";text-transform:uppercase;text-shadow:0 2px 12px #000}
+.uso .top::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,#0009)}
+.uso .top b{z-index:2}
+.uso .bd{padding:16px 18px 20px}
+.uso ol{padding-left:20px;line-height:1.6;display:none;margin-top:10px}
+.uso.open ol{display:block}
+.uso .more{color:var(--rojo);font-weight:800;margin-top:8px;font-size:14px;text-transform:uppercase;letter-spacing:1px}
+.t1{filter:sepia(.3) saturate(1.4) hue-rotate(-10deg)}
+.t2{filter:saturate(1.3) hue-rotate(40deg) brightness(1.1)}
+.t3{filter:sepia(.6) brightness(.7) saturate(1.5)}
+
+/* Ficha */
+.ficha{background:linear-gradient(135deg,var(--miel),var(--oro))}
+.ficha .grid{display:grid;gap:26px;align-items:center}
+@media(min-width:820px){.ficha .grid{grid-template-columns:.9fr 1.1fr}}
+.ficha img.r{border-radius:16px;box-shadow:0 20px 50px #4a1f0555;transform:rotate(2deg)}
+.datos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dato{background:#fff8;border-radius:14px;padding:16px;backdrop-filter:blur(4px)}
+.dato small{display:block;text-transform:uppercase;font-weight:800;font-size:12px;letter-spacing:1px;color:var(--cafe2)}
+.dato strong{font:800 26px "Barlow Condensed";color:var(--cafe)}
+.count{font-variant-numeric:tabular-nums}
+
+/* Pedido */
+.pedido{background:#fff}
+.box{max-width:620px;margin:0 auto;background:var(--crema);border-radius:22px;padding:26px;box-shadow:0 20px 50px #7a3a0c22;border:2px solid #f3d9a6}
+.row{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:12px 0}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{width:46px;height:46px;border-radius:50%;border:0;background:var(--cafe2);color:#fff;font:800 24px Barlow;cursor:pointer;transition:transform .15s}
+.qty button:active{transform:scale(.9)}
+.qty output{min-width:52px;text-align:center;font:800 32px "Barlow Condensed"}
+label{display:block;font-weight:700;font-size:14px;margin:14px 0 6px;color:var(--cafe2)}
+input,textarea{width:100%;padding:13px;border-radius:12px;border:2px solid #e6cfa3;font:16px Barlow;background:#fff}
+input:focus,textarea:focus{outline:none;border-color:var(--miel)}
+.total{font:800 30px "Barlow Condensed";color:var(--rojo)}
+.priv{font-size:12px;color:#7a5232;margin-top:12px;line-height:1.4}
+.pedido .cta{width:100%;justify-content:center}
+
+footer{background:var(--cafe);color:#f3d9a6;text-align:center;padding:36px 20px 110px;font-size:14px;line-height:1.7}
+footer b{color:var(--oro)}
+
+.fab{position:fixed;right:16px;bottom:16px;z-index:60;background:#1f9d55;color:#fff;text-decoration:none;font:800 15px Barlow;padding:14px 20px;border-radius:40px;box-shadow:0 10px 30px #0005;animation:pulse 2.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #1f9d5599}70%{box-shadow:0 0 0 18px #1f9d5500}100%{box-shadow:0 0 0 0 #1f9d5500}}
+#install{position:fixed;left:16px;bottom:16px;z-index:60;background:var(--oro);color:var(--cafe);border:0;font:800 14px Barlow;padding:13px 18px;border-radius:40px;box-shadow:0 10px 30px #0004;display:none;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div id="splash">
+  <small data-i18n="splash_k">PANELA PULVERIZADA</small>
+  <h2>Sabor y Placer</h2>
+  <small data-i18n="splash_s">Yalí · Nordeste Antioqueño</small>
+  <div class="bar"><i></i></div>
+</div>
+
+<header id="top">
+  <b>Sabor <span>y</span> Placer</b>
+  <div class="lang"><button data-l="es" class="on">ES</button><button data-l="en">EN</button></div>
+</header>
+
+<section class="hero" style="padding:0">
+  <div class="bg"></div>
+  <div class="in">
+    <div>
+      <span class="kicker" data-i18n="kicker">100% natural</span>
+      <h1><span data-i18n="h1a">Panela</span> <em>Sabor y Placer</em></h1>
+      <p class="lead" data-i18n="lead">Panela pulverizada de la Finca El Placer, en las montañas de Yalí. Lista para disolver en tu aguapanela, limonada o chocolate.</p>
+      <div class="pills">
+        <span data-i18n="p1">Bolsa de 460 g</span>
+        <span data-i18n="p2">Hecha en Yalí, Antioquia</span>
+        <span data-i18n="p3">Con notificación sanitaria</span>
+      </div>
+      <a href="#pedido" class="cta" data-i18n="cta">Hacer mi pedido</a>
+    </div>
+    <img class="bag" src="frente.jpg" alt="Bolsa de Panela Pulverizada Sabor y Placer, 460 g">
+  </div>
+</section>
+
+<div class="ticker"><div id="tk"></div></div>
+
+<section class="historia">
+  <div class="wrap grid">
+    <div class="rv">
+      <h2 class="sec-t" data-i18n="hist_t">De los cañaduzales a tu taza</h2>
+      <blockquote data-i18n="hist_q">En las montañas verdes de Yalí, los arrieros cuidaron por años los cañaduzales que sembraron nuestros padres y abuelos. La caña bajaba en mula, y de ella salía la miel y la panela. Esa receta, hecha con esfuerzo, amor y alegría por el trabajo del campo, es la que hoy les dejamos a nuestros hijos.</blockquote>
+    </div>
+    <figure class="ph rv">
+      <img src="arriero.jpg" alt="Mula cargada de caña en Yalí, imagen del empaque">
+      <figcaption data-i18n="hist_c">La mula cargada de caña: la imagen que lleva cada bolsa.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-t rv" data-i18n="usos_t">Un sorbo de Sabor y Placer</h2>
+    <p class="sec-s rv" data-i18n="usos_s">Al ser pulverizada se disuelve rápido, sin rallar ni partir. Toca una tarjeta para ver cómo prepararla.</p>
+    <div class="usos">
+      <div class="uso rv"><div class="top"><img class="t1" src="textura.jpg" alt=""><b data-i18n="u1">Aguapanela</b></div>
+        <div class="bd"><p data-i18n="u1d">La de toda la vida, caliente o fría.</p>
+        <ol data-i18n-list="u1l"></ol><div class="more" data-i18n="ver">Ver preparación</div></div></div>
+      <div class="uso rv"><div class="top"><img class="t2" src="textura.jpg" alt=""><b data-i18n="u2">Limonada de panela</b></div>
+        <div class="bd"><p data-i18n="u2d">Refrescante para el calor del Bajo Cauca.</p>
+        <ol data-i18n-list="u2l"></ol><div class="more" data-i18n="ver">Ver preparación</div></div></div>
+      <div class="uso rv"><div class="top"><img class="t3" src="textura.jpg" alt=""><b data-i18n="u3">Chocolate</b></div>
+        <div class="bd"><p data-i18n="u3d">El chocolate de la mañana con dulce de caña.</p>
+        <ol data-i18n-list="u3l"></ol><div class="more" data-i18n="ver">Ver preparación</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ficha">
+  <div class="wrap grid">
+    <img class="r rv" src="reverso.jpg" alt="Reverso del empaque con la historia de la panela">
+    <div class="rv">
+      <h2 class="sec-t" style="color:var(--cafe)" data-i18n="ficha_t">Lo que trae la bolsa</h2>
+      <div class="datos">
+        <div class="dato"><small data-i18n="d1">Peso neto</small><strong><span class="count" data-to="460">0</span> g</strong></div>
+        <div class="dato"><small data-i18n="d2">Natural</small><strong><span class="count" data-to="100">0</span>%</strong></div>
+        <div class="dato"><small data-i18n="d3">Origen</small><strong>Yalí, Ant.</strong></div>
+        <div class="dato"><small data-i18n="d4">Productora</small><strong>Martha Chaverra G.</strong></div>
+        <div class="dato"><small data-i18n="d5">Finca</small><strong>El Placer</strong></div>
+        <div class="dato"><small data-i18n="d6">Conservación</small><strong data-i18n="d6v">Lugar fresco y seco</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pedido" id="pedido">
+  <div class="wrap">
+    <h2 class="sec-t rv" style="text-align:center" data-i18n="ped_t">Haz tu pedido</h2>
+    <p class="sec-s rv" style="margin:0 auto 26px;text-align:center" data-i18n="ped_s">Elige cuántas bolsas quieres y te llega el mensaje listo por WhatsApp.</p>
+    <div class="box rv">
+      <div class="row">
+        <div><b data-i18n="prod">Panela pulverizada 460 g</b><br><small id="precioTxt"></small></div>
+        <div class="qty"><button id="menos" aria-label="menos">−</button><output id="q">1</output><button id="mas" aria-label="más">+</button></div>
+      </div>
+      <div class="row"><span data-i18n="tot">Total</span><span class="total" id="total"></span></div>
+      <label for="nom" data-i18n="nom">Tu nombre</label>
+      <input id="nom" autocomplete="name">
+      <label for="dir" data-i18n="dir">Barrio o dirección de entrega</label>
+      <input id="dir" autocomplete="street-address">
+      <label for="nota" data-i18n="nota">Nota (opcional)</label>
+      <textarea id="nota" rows="2"></textarea>
+      <button class="cta" id="enviar" data-i18n="env">Enviar pedido por WhatsApp</button>
+      <p class="priv" data-i18n="priv">Tus datos solo se usan para enviar este pedido por WhatsApp. No se guardan en ningún servidor (Ley 1581 de 2012, Habeas Data).</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>Panela Sabor y Placer</b><br>
+  <span data-i18n="f1">Producida y empacada por Martha Chaverra G. · Finca El Placer · Yalí, Antioquia</span><br>
+  <span data-i18n="f2">Consérvese en un lugar fresco y seco.</span><br><br>
+  <span data-i18n="f3">Desarrollada por Vibras Positivas HM — Derechos de Autor Reservados</span><br>
+  <a href="https://vibraspositivashm.com" style="color:var(--oro)">vibraspositivashm.com</a>
+</footer>
+
+<a class="fab" id="fab" target="_blank" rel="noopener" data-i18n="fab">Pedir por WhatsApp</a>
+<button id="install" data-i18n="inst">Instalar app</button>
+
+<script>
+/* ===== CONFIGURACIÓN: cambia aquí el WhatsApp y el precio ===== */
+const CONFIG = {
+  whatsapp: "573117700431",   // número con 57 adelante, sin espacios
+  precio: 0                    // precio por bolsa en pesos; 0 = "precio a convenir"
+};
+
+const T = {
+ es:{splash_k:"PANELA PULVERIZADA",splash_s:"Yalí · Nordeste Antioqueño",kicker:"100% natural",h1a:"Panela",
+  lead:"Panela pulverizada de la Finca El Placer, en las montañas de Yalí. Lista para disolver en tu aguapanela, limonada o chocolate.",
+  p1:"Bolsa de 460 g",p2:"Hecha en Yalí, Antioquia",p3:"Con notificación sanitaria",cta:"Hacer mi pedido",
+  tk:["100% natural","Finca El Placer","Yalí, Antioquia","La mejor panela del Nordeste Antioqueño","Bolsa de 460 g","Se disuelve al instante"],
+  hist_t:"De los cañaduzales a tu taza",
+  hist_q:"En las montañas verdes de Yalí, los arrieros cuidaron por años los cañaduzales que sembraron nuestros padres y abuelos. La caña bajaba en mula, y de ella salía la miel y la panela. Esa receta, hecha con esfuerzo, amor y alegría por el trabajo del campo, es la que hoy les dejamos a nuestros hijos.",
+  hist_c:"La mula cargada de caña: la imagen que lleva cada bolsa.",
+  usos_t:"Un sorbo de Sabor y Placer",usos_s:"Al ser pulverizada se disuelve rápido, sin rallar ni partir. Toca una tarjeta para ver cómo prepararla.",
+  u1:"Aguapanela",u1d:"La de toda la vida, caliente o fría.",
+  u1l:["Calienta 1 litro de agua.","Agrega 4 a 5 cucharadas de panela y revuelve hasta disolver.","Sírvela caliente con queso, o enfríala con hielo."],
+  u2:"Limonada de panela",u2d:"Refrescante para el calor del Bajo Cauca.",
+  u2l:["Disuelve 5 cucharadas de panela en un poco de agua.","Completa 1 litro de agua fría y agrega el zumo de 3 o 4 limones.","Sirve con bastante hielo."],
+  u3:"Chocolate",u3d:"El chocolate de la mañana con dulce de caña.",
+  u3l:["Pon a calentar leche o agua con tu chocolate de mesa.","Endulza con panela al gusto en lugar de azúcar.","Bate hasta que haga espuma y sirve."],
+  ver:"Ver preparación",ocultar:"Ocultar",
+  ficha_t:"Lo que trae la bolsa",d1:"Peso neto",d2:"Natural",d3:"Origen",d4:"Productora",d5:"Finca",d6:"Conservación",d6v:"Lugar fresco y seco",
+  ped_t:"Haz tu pedido",ped_s:"Elige cuántas bolsas quieres y te llega el mensaje listo por WhatsApp.",
+  prod:"Panela pulverizada 460 g",tot:"Total",nom:"Tu nombre",dir:"Barrio o dirección de entrega",nota:"Nota (opcional)",
+  env:"Enviar pedido por WhatsApp",priv:"Tus datos solo se usan para enviar este pedido por WhatsApp. No se guardan en ningún servidor (Ley 1581 de 2012, Habeas Data).",
+  f1:"Producida y empacada por Martha Chaverra G. · Finca El Placer · Yalí, Antioquia",f2:"Consérvese en un lugar fresco y seco.",
+  f3:"Desarrollada por Vibras Positivas HM — Derechos de Autor Reservados",fab:"Pedir por WhatsApp",inst:"Instalar app",
+  convenir:"Precio a convenir",cu:"c/u",bolsas:"bolsa(s)",
+  msg:(q,n,d,no,t)=>`Hola, quiero pedir Panela Sabor y Placer:\n- ${q} bolsa(s) de 460 g${t?`\n- Total: ${t}`:""}\n\nNombre: ${n||"-"}\nEntrega: ${d||"-"}${no?`\nNota: ${no}`:""}`,
+  fabmsg:"Hola, quiero información de la Panela Sabor y Placer."},
+ en:{splash_k:"POWDERED PANELA",splash_s:"Yalí · Northeast Antioquia, Colombia",kicker:"100% natural",h1a:"Panela",
+  lead:"Powdered unrefined cane sugar from Finca El Placer, in the mountains of Yalí. Ready to dissolve in aguapanela, lemonade or hot chocolate.",
+  p1:"460 g bag",p2:"Made in Yalí, Antioquia",p3:"Health-registered product",cta:"Place my order",
+  tk:["100% natural","Finca El Placer","Yalí, Antioquia","The best panela from Northeast Antioquia","460 g bag","Dissolves instantly"],
+  hist_t:"From the cane fields to your cup",
+  hist_q:"In the green mountains of Yalí, muleteers spent years tending the cane fields our parents and grandparents planted. The cane came down by mule, and from it came cane honey and panela. That recipe, made with effort, love and joy for farm work, is what we now pass on to our children.",
+  hist_c:"The mule loaded with cane: the image on every bag.",
+  usos_t:"A sip of Sabor y Placer",usos_s:"Being powdered, it dissolves fast — no grating or breaking. Tap a card to see how to make it.",
+  u1:"Aguapanela",u1d:"The classic Colombian drink, hot or cold.",
+  u1l:["Heat 1 liter of water.","Add 4 to 5 tablespoons of panela and stir until dissolved.","Serve hot with cheese, or chill it with ice."],
+  u2:"Panela lemonade",u2d:"Refreshing in the hot Bajo Cauca weather.",
+  u2l:["Dissolve 5 tablespoons of panela in a little water.","Top up to 1 liter of cold water and add the juice of 3 or 4 limes.","Serve with plenty of ice."],
+  u3:"Hot chocolate",u3d:"Morning chocolate sweetened with cane.",
+  u3l:["Heat milk or water with your table chocolate.","Sweeten with panela to taste instead of sugar.","Whisk until foamy and serve."],
+  ver:"See recipe",ocultar:"Hide",
+  ficha_t:"What's in the bag",d1:"Net weight",d2:"Natural",d3:"Origin",d4:"Producer",d5:"Farm",d6:"Storage",d6v:"Cool, dry place",
+  ped_t:"Place your order",ped_s:"Choose how many bags you want and the WhatsApp message is ready to send.",
+  prod:"Powdered panela 460 g",tot:"Total",nom:"Your name",dir:"Neighborhood or delivery address",nota:"Note (optional)",
+  env:"Send order via WhatsApp",priv:"Your data is only used to send this order via WhatsApp. It is not stored on any server (Colombian Law 1581 of 2012, Habeas Data).",
+  f1:"Produced and packed by Martha Chaverra G. · Finca El Placer · Yalí, Antioquia",f2:"Store in a cool, dry place.",
+  f3:"Developed by Vibras Positivas HM — All Rights Reserved",fab:"Order on WhatsApp",inst:"Install app",
+  convenir:"Price on request",cu:"each",bolsas:"bag(s)",
+  msg:(q,n,d,no,t)=>`Hello, I'd like to order Panela Sabor y Placer:\n- ${q} bag(s) of 460 g${t?`\n- Total: ${t}`:""}\n\nName: ${n||"-"}\nDelivery: ${d||"-"}${no?`\nNote: ${no}`:""}`,
+  fabmsg:"Hello, I'd like information about Panela Sabor y Placer."}
+};
+let L = localStorage.getItem("ssp_lang") || "es";
+let q = 1;
+const $ = s=>document.querySelector(s);
+const cop = n=>"$"+n.toLocaleString("es-CO");
+
+function render(){
+  const t=T[L]; document.documentElement.lang=L;
+  document.querySelectorAll("[data-i18n]").forEach(e=>{const k=e.dataset.i18n; if(typeof t[k]==="string") e.textContent=t[k];});
+  document.querySelectorAll("[data-i18n-list]").forEach(e=>{e.innerHTML=t[e.dataset.i18nList].map(x=>`<li>${x}</li>`).join("");});
+  document.querySelectorAll(".uso").forEach(u=>u.querySelector(".more").textContent=u.classList.contains("open")?t.ocultar:t.ver);
+  document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===L));
+  const tk=t.tk.map(x=>`<span>${x}</span><span>·</span>`).join(""); $("#tk").innerHTML=tk+tk;
+  $("#fab").href=`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(t.fabmsg)}`;
+  totals();
+}
+function totals(){
+  const t=T[L]; $("#q").textContent=q;
+  if(CONFIG.precio>0){ $("#precioTxt").textContent=`${cop(CONFIG.precio)} ${t.cu}`; $("#total").textContent=cop(CONFIG.precio*q); }
+  else { $("#precioTxt").textContent=t.convenir; $("#total").textContent=`${q} ${t.bolsas}`; }
+}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{L=b.dataset.l;try{localStorage.setItem("ssp_lang",L)}catch(e){};render();});
+$("#mas").onclick=()=>{q=Math.min(99,q+1);totals();};
+$("#menos").onclick=()=>{q=Math.max(1,q-1);totals();};
+document.querySelectorAll(".uso").forEach(u=>u.onclick=()=>{u.classList.toggle("open");render();});
+$("#enviar").onclick=()=>{
+  const t=T[L], tot=CONFIG.precio>0?cop(CONFIG.precio*q):"";
+  const m=t.msg(q,$("#nom").value.trim(),$("#dir").value.trim(),$("#nota").value.trim(),tot);
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(m)}`,"_blank");
+};
+
+/* Animaciones */
+addEventListener("scroll",()=>$("#top").classList.toggle("solid",scrollY>40),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("vis");
+  e.target.querySelectorAll(".count").forEach(c=>{const to=+c.dataset.to;let v=0;const st=Math.max(1,Math.ceil(to/40));
+   const iv=setInterval(()=>{v=Math.min(to,v+st);c.textContent=v;if(v>=to)clearInterval(iv);},30);});
+  io.unobserve(e.target);}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(e=>io.observe(e));
+addEventListener("load",()=>setTimeout(()=>$("#splash").classList.add("off"),900));
+
+/* PWA */
+if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
+let dp; addEventListener("beforeinstallprompt",e=>{e.preventDefault();dp=e;$("#install").style.display="block";});
+$("#install").onclick=async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;$("#install").style.display="none";};
+
+render();
+</script>
+</body>
+</html>
