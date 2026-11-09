@@ -24,3 +24,7 @@ Repo: `haroldco45/panela-sabor-y-placer` → Netlify: `panela-sabor-y-placer.net
 Si el nombre del sitio en Netlify cambia, actualizar `og:image` y `og:url` en `index.html`.
 
 Desarrollada por Vibras Positivas HM — Derechos de Autor Reservados.
+
+## Versión de prueba
+La app vence al terminar el **8 de diciembre de 2026** (hora Colombia). Ese día muestra "Esta app ya venció" con el botón para activarla por WhatsApp (311 770 0431).
+Para activarla cuando paguen: en `index.html`, bloque `CONFIG`, poner `vence: null` (o una nueva fecha) y subir el archivo.

@@ -158,6 +158,13 @@ input:focus,textarea:focus{outline:none;border-color:var(--miel)}
 .lines .qty button{width:38px;height:38px;font-size:20px}
 .lines .qty output{min-width:36px;font-size:26px}
 .note{font-size:13px;color:#7a5232;margin-top:18px}
+#vencida{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px;color:#fff;text-align:center;background:url(frente.jpg) center/cover}
+#vencida::before{content:"";position:absolute;inset:0;background:#2b1404e8;backdrop-filter:blur(6px)}
+#vencida .c{position:relative;max-width:420px}
+#vencida h2{font-size:44px;color:var(--oro);margin:14px 0}
+#vencida p{color:#ffeccc;font-size:17px;line-height:1.5}
+#vencida .cta{background:#1f9d55;box-shadow:0 10px 30px #1f9d5566}
+body.lock{overflow:hidden}
 footer{background:var(--cafe);color:#f3d9a6;text-align:center;padding:36px 20px 110px;font-size:14px;line-height:1.7}
 footer b{color:var(--oro)}
 
@@ -167,6 +174,16 @@ footer b{color:var(--oro)}
 </style>
 </head>
 <body>
+
+<div id="vencida">
+  <div class="c">
+    <span class="kicker" data-i18n="v_k">Versión de prueba</span>
+    <h2 data-i18n="v_t">Esta app ya venció</h2>
+    <p data-i18n="v_p">La versión de prueba de Panela Sabor y Placer estuvo activa hasta el 8 de diciembre de 2026. Para seguir usándola, escríbele a Vibras Positivas HM.</p>
+    <a class="cta" id="v_btn" target="_blank" rel="noopener" data-i18n="v_b">Activar la app por WhatsApp</a>
+    <p style="margin-top:22px;font-size:13px" data-i18n="f3">Desarrollada por Vibras Positivas HM — Derechos de Autor Reservados</p>
+  </div>
+</div>
 
 <div id="splash">
   <small data-i18n="splash_k">PANELA PULVERIZADA</small>
@@ -291,7 +308,10 @@ footer b{color:var(--oro)}
 /* ===== CONFIGURACIÓN: cambia aquí el WhatsApp y el precio ===== */
 const CONFIG = {
   whatsapp: "573116686640",   // número con 57 adelante, sin espacios
-  precio: 0                    // precio por bolsa en pesos; 0 = "precio a convenir"
+  precio: 0,                   // precio por bolsa en pesos; 0 = "precio a convenir"
+  // Versión de prueba: vence al terminar el 8 dic 2026, hora Colombia. Para activarla, poner vence: null
+  vence: "2026-12-09T00:00:00-05:00",
+  activar: "573117700431"      // WhatsApp de Vibras Positivas HM para activar
 };
 
 const T = {
@@ -319,7 +339,9 @@ const T = {
   convenir:"Precio a convenir",cu:"c/u",und:"producto(s)",agregar:"Agregar",
   fam_t:"La familia Sabor y Placer",fam_s:"Además de la pulverizada, la marca tiene panela en pastilla, redonda, cuadrada y porcionada. Toca una para agregarla a tu pedido.",fam_n:"Presentaciones de la marca que se encuentran en supermercados de Antioquia. Confirma disponibilidad al hacer tu pedido.",
   msg:(q,n,d,no,t)=>`Hola, quiero pedir Panela Sabor y Placer:\n${q}${t?`\n- Total: ${t}`:""}\n\nNombre: ${n||"-"}\nEntrega: ${d||"-"}${no?`\nNota: ${no}`:""}`,
-  fabmsg:"Hola, quiero información de la Panela Sabor y Placer."},
+  fabmsg:"Hola, quiero información de la Panela Sabor y Placer.",
+  v_k:"Versión de prueba",v_t:"Esta app ya venció",v_p:"La versión de prueba de Panela Sabor y Placer estuvo activa hasta el 8 de diciembre de 2026. Para seguir usándola, escríbele a Vibras Positivas HM.",v_b:"Activar la app por WhatsApp",
+  v_msg:"Hola Harold, quiero activar la app de Panela Sabor y Placer."},
  en:{splash_k:"POWDERED PANELA",splash_s:"Yalí · Northeast Antioquia, Colombia",kicker:"100% natural",h1a:"Panela",
   lead:"Powdered unrefined cane sugar from Finca El Placer, in the mountains of Yalí. Ready to dissolve in aguapanela, lemonade or hot chocolate.",
   p1:"460 g bag",p2:"Made in Yalí, Antioquia",p3:"Health-registered product",cta:"Place my order",
@@ -344,7 +366,9 @@ const T = {
   convenir:"Price on request",cu:"each",und:"item(s)",agregar:"Add",
   fam_t:"The Sabor y Placer family",fam_s:"Besides the powdered panela, the brand makes tablet, round, square and portioned panela. Tap one to add it to your order.",fam_n:"Brand presentations found in supermarkets across Antioquia. Confirm availability when you order.",
   msg:(q,n,d,no,t)=>`Hello, I'd like to order Panela Sabor y Placer:\n${q}${t?`\n- Total: ${t}`:""}\n\nName: ${n||"-"}\nDelivery: ${d||"-"}${no?`\nNote: ${no}`:""}`,
-  fabmsg:"Hello, I'd like information about Panela Sabor y Placer."}
+  fabmsg:"Hello, I'd like information about Panela Sabor y Placer.",
+  v_k:"Trial version",v_t:"This app has expired",v_p:"The trial version of Panela Sabor y Placer was active until December 8, 2026. To keep using it, contact Vibras Positivas HM.",v_b:"Activate the app on WhatsApp",
+  v_msg:"Hello Harold, I'd like to activate the Panela Sabor y Placer app."}
 };
 /* Presentaciones de la marca. precio 0 = a convenir (la pulverizada usa CONFIG.precio) */
 const PRODUCTOS = [
@@ -367,6 +391,7 @@ function render(){
   document.querySelectorAll(".uso").forEach(u=>u.querySelector(".more").textContent=u.classList.contains("open")?t.ocultar:t.ver);
   document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===L));
   const tk=t.tk.map(x=>`<span>${x}</span><span>·</span>`).join(""); $("#tk").innerHTML=tk+tk;
+  $("#v_btn").href=`https://wa.me/${CONFIG.activar}?text=${encodeURIComponent(t.v_msg)}`;
   $("#fab").href=`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(t.fabmsg)}`;
   renderFam(); totals();
 }
@@ -416,6 +441,15 @@ let dp; addEventListener("beforeinstallprompt",e=>{e.preventDefault();dp=e;$("#i
 $("#install").onclick=async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;$("#install").style.display="none";};
 
 render();
+
+/* Vencimiento de la versión de prueba (se revisa al abrir y cada minuto) */
+function revisarVence(){
+  if(CONFIG.vence && Date.now() >= new Date(CONFIG.vence).getTime()){
+    $("#vencida").style.display="flex"; document.body.classList.add("lock");
+    $("#splash").classList.add("off"); $("#fab").style.display="none"; $("#install").style.display="none";
+  }
+}
+revisarVence(); setInterval(revisarVence,60000);
 </script>
 </body>
 </html>
